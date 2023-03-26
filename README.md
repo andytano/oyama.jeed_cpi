@@ -1,1 +1,1 @@
-# sample text
+# Comm. Protocol Inst. Lesson
