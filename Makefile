@@ -10,8 +10,10 @@ all : $(TARGET)
 
 $(TARGET): $(OBJ) 
 	$(CC) -o $@ $^ $(LFLAGS)
+
 .c.o:
 	$(CC) -c $^
+
 clean:
 	rm -f $(TARGET) $(OBJ)
 
