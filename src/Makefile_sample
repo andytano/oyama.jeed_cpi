@@ -1,0 +1,21 @@
+TARGET := sample
+SRC := $(TARGET).c
+OBJ := $(TARGET).o
+CFLAG := -g -Wall
+LFLAG := -lm -pthread
+CC := gcc $(CFLAG)
+
+# MAKE ALL (PHONY TARGET)
+.PHONY: all
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) -o $@ $^ $(LFLAG)
+
+
+.c.o:
+	$(CC) -c $^
+
+clean:
+	rm -f $(TARGET) $(OBJ)
+
