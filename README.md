@@ -1,2 +1,2 @@
 # Comm. Protocol Inst. Lesson
-ex05
+ex06
