@@ -14,11 +14,14 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) -o ../$@ ../$^ $(LFLAGS)
 
-server: $(OBJ_SV)
+sv: $(OBJ_SV)
 	$(CC) -o ../$(TARGET_SV) ../$^ $(LFLAGS)
 
 $(OBJ): $(SRC)
 	$(CC) -o ../$(OBJ) -c $^
+
+$(OBJ_SV): $(SRC_SV)
+	$(CC) -o ../$(OBJ_SV) -c $^
 
 clean:
 	rm -f ../$(TARGET) ../$(OBJ)
