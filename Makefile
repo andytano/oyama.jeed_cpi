@@ -11,7 +11,7 @@ CC := gcc $(CFLAG) $(LFLAGS)
 
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET):$(OBJ)
 	$(CC) -o ../$@ ../$^ $(LFLAGS)
 
 sv: $(OBJ_SV)
