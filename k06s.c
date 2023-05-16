@@ -62,11 +62,11 @@ int main(int argc, char *argv[])
 		/* WAITING REQUEST FROM CLIENTS */
 		printf("\naccept()");
 		if ((clSock = accept(svSock, (struct sockaddr *)&clAddr, &clAddrLen)) == -1) {
-    			excep("FAIL:accept()");
+			excep("FAIL:accept()");
 		}
 
 		printf("\nCONNECTED CLIENT : %s", inet_ntoa(clAddr.sin_addr));
-    		printf(", port%d", ntohs(clAddr.sin_port));
+		printf(", port%d", ntohs(clAddr.sin_port));
 
 		/* CALL CLIENT HANDLER */
 		clHandler(clSock);
