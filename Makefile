@@ -9,12 +9,12 @@ CFLAGS := -g -Wall
 LFLAGS := -lm
 CC := gcc $(CFLAG) $(LFLAGS)
 
-all: $(TARGET)
+all: $(TARGET) $(TARGET_SV)
 
-$(TARGET):$(OBJ)
+$(TARGET): $(OBJ)
 	$(CC) -o ../$@ ../$^ $(LFLAGS)
 
-sv: $(OBJ_SV)
+$(TARGET_SV): $(OBJ_SV)
 	$(CC) -o ../$(TARGET_SV) ../$^ $(LFLAGS)
 
 $(OBJ): $(SRC)
@@ -25,4 +25,5 @@ $(OBJ_SV): $(SRC_SV)
 
 clean:
 	rm -f ../$(TARGET) ../$(OBJ)
-
+	rm -f ../$(TARGET_SV) ../$(OBJ_SV)
+	rm -f ./*~

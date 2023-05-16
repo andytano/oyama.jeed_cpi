@@ -1,6 +1,6 @@
 /*** TCP/IP server program ***/
 /* Usage: ./server HostName */
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,11 +9,11 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <netinet/in.h>
- 
+
 #define PORT 50001
- 
+
 char buf[]="Sample message.\n";
- 
+
 int main(int argc, char *argv[])
 {
     struct sockaddr_in ServerAddr;
