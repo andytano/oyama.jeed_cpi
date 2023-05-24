@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	svPort = atoi(argv[1]);
-	
+
 	/* ソケット生成 */
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
 		excep("FAIL:socket()");
@@ -52,8 +52,7 @@ int main(int argc, char *argv[])
 	while (1) {
 		/* 受信 */
 		clAddrSize = sizeof(clAddr);
-		if ((rcvdStrLen = recvfrom(sock, rcvdStr, BUF_LEN - 1, 0, 
-					(struct sockaddr *)&clAddr, &clAddrSize)) < 0) {
+		if ((rcvdStrLen = recvfrom(sock, rcvdStr, BUF_LEN - 1, 0,	(struct sockaddr *)&clAddr, &clAddrSize)) < 0) {
 			excep("FAIL:recvfrom()");
 		}
 		printf("\nCLIENT : %s", inet_ntoa(clAddr.sin_addr));	// (* Ex08-BLOCKED)
@@ -62,8 +61,7 @@ int main(int argc, char *argv[])
 		printf("\nrecvfrom():%s[%dbyte]\n", rcvdStr, rcvdStrLen);
 
 		/* エコーバック */
-		if (sendto(sock, rcvdStr, rcvdStrLen, 0, 
-					(struct sockaddr *)&clAddr, clAddrSize) != rcvdStrLen) {
+		if (sendto(sock, rcvdStr, rcvdStrLen, 0, (struct sockaddr *)&clAddr, clAddrSize) != rcvdStrLen) {
 			excep("FAIL:sendto()");
 		}
 		printf("\nEcho-back sent.\n");
@@ -77,4 +75,3 @@ void excep(char *errMsg)
 	perror(errMsg);
 	exit(1);
 }
-

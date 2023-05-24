@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	unsigned int echoStrLen;			// length of echo string
 	char rcvdStr[BUF_LEN];				// received string buffer
 	unsigned int rcvdStrLen;			// length of received string
-	
+
 	/* アーギュメントのチェック */
 	if ((argc < 3) || (argc > 4)) {
 		fprintf(stderr, "Usage: %s <server IP> <echo word> [<echo port>]\n", argv[0]);
@@ -51,24 +51,22 @@ int main(int argc, char *argv[])
 	if ((sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
 		excep("FAIL:socket()");
 	}
-	
+
 	/* アドレス構造体初期化 */
 	memset(&svAddr, 0, sizeof(svAddr));
-    svAddr.sin_family = AF_INET;
-    svAddr.sin_addr.s_addr = inet_addr(svIP);
-    svAddr.sin_port = htons(svPort);
+ 	svAddr.sin_family = AF_INET;
+  svAddr.sin_addr.s_addr = inet_addr(svIP);
+  svAddr.sin_port = htons(svPort);
 
 	/* 文字列送信 */
-	if (sendto(sock, echoStr, echoStrLen, 0, 
-				(struct sockaddr *)&svAddr, sizeof(svAddr)) != echoStrLen) {
+	if (sendto(sock, echoStr, echoStrLen, 0, (struct sockaddr *)&svAddr, sizeof(svAddr)) != echoStrLen) {
 		excep("FAIL:sendto()");
 	}
 	printf("\nsendto():%s[%dbyte]\n", echoStr, echoStrLen);
-	
+
 	/* 応答受信 */
 	rcvdAddrSize = sizeof(rcvdAddr);
-	if ((rcvdStrLen = recvfrom(sock, rcvdStr, BUF_LEN, 0, 
-				(struct sockaddr *)&rcvdAddr, &rcvdAddrSize)) != echoStrLen) {
+	if ((rcvdStrLen = recvfrom(sock, rcvdStr, BUF_LEN, 0,	(struct sockaddr *)&rcvdAddr, &rcvdAddrSize)) != echoStrLen) {
 		excep("FAIL:recvfrom()");
 	}
 	if (svAddr.sin_addr.s_addr != rcvdAddr.sin_addr.s_addr) {
