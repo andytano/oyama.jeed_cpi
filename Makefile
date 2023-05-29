@@ -1,7 +1,7 @@
-TARGET := k07c
+TARGET := k09c
 SRC := $(TARGET).c
 OBJ := $(TARGET).o
-TARGET_SV := k08s
+TARGET_SV := k09s
 SRC_SV := $(TARGET_SV).c
 OBJ_SV := $(TARGET_SV).o
 
