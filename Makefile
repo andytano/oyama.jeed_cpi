@@ -1,14 +1,19 @@
 TARGET := k10c
-SRC := $(TARGET).c
 OBJ := $(TARGET).o
+SRC := $(OBJ:%.o=%.c)
 TARGET_SV := k10s
-SRC_SV := $(TARGET_SV).c
 OBJ_SV := $(TARGET_SV).o
+SRC_SV := $(OBJ_SV:%.o=%.c)
+HEADER := myTCP.h
 
-CFLAGS := -g -Wall
-LFLAGS := -lm
-CC := gcc $(CFLAG) $(LFLAGS)
+# COMPILER & OPTIONS
+CFLAGS := -g -Wall -Wextra -DDEBUG=1
+#		-D: definition for '#if DEBUG=1'
+LFLAGS := -lpthread
+CC := gcc $(CFLAGS)
 
+# MAKE ALL (PHONY TARGET)
+.PHONY: all
 all: $(TARGET) $(TARGET_SV)
 
 $(TARGET): $(OBJ)
@@ -17,12 +22,15 @@ $(TARGET): $(OBJ)
 $(TARGET_SV): $(OBJ_SV)
 	$(CC) -o ../$(TARGET_SV) ../$^ $(LFLAGS)
 
-$(OBJ): $(SRC)
-	$(CC) -o ../$(OBJ) -c $^
+$(OBJ): $(SRC) $(HEADER)
+	$(CC) -o ../$(OBJ) -c $(SRC)
 
-$(OBJ_SV): $(SRC_SV)
-	$(CC) -o ../$(OBJ_SV) -c $^
+$(OBJ_SV): $(SRC_SV) $(HEADER)
+	$(CC) -o ../$(OBJ_SV) -c $(SRC_SV)
 
+
+# CLEAN FILES (PHONY TARGET)
+.PHONY: clean
 clean:
 	rm -f ../$(TARGET) ../$(OBJ)
 	rm -f ../$(TARGET_SV) ../$(OBJ_SV)
