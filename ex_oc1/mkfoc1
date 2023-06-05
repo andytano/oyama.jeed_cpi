@@ -1,0 +1,25 @@
+TARGET := exoc1
+TARGET1 := op_oc1
+SRC1 := $(TARGET1).cpp
+OBJ1 := $(TARGET1).o
+
+TARGET2 := thre_oc1
+SRC2 := $(TARGET2).c
+OBJ2 := $(TARGET2).o
+
+CFLAGS := -g -Wall
+LFLAGS := -lm -pthread
+OPTION := `pkg-config --cflags --libs opencv`
+GPP := g++ 
+GCC := gcc
+
+all : $(TARGET)
+
+$(TARGET): $(OBJ1) $(OBJ2) 
+	$(GPP) $^ $(CFLAGS) $(LFLAGS) $(OPTION) -o $@
+$(OBJ1): $(SRC1) 
+	$(GPP) -c $^ $(CFLAGS) $(LFLAGS) $(OPTION)
+$(OBJ2): $(SRC2) 
+	$(GCC) $(CFLAGS) $(LFLAGS) -c $^
+clean:
+	rm -f $(TARGET) $(OBJ1) $(OBJ2)
