@@ -29,9 +29,9 @@ using namespace std;
 //　メイン関数
 //-----------------------------------------------------------------------------
 int main(int argc, char *argv[]){
-
 	int sock_of_con;					//送受信用ソケット
 	struct sockaddr_in addr_of_con;
+	unsigned int i;
 
 	if (argc != 2) {
 		printf ("No IP address error.\n");
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]){
 		//画像イメージをparamの品質でエンコードしてibuffに格納する
 		cv::imencode(".jpg", frame, ibuff, param);
 		if(ibuff.size() < sendSize ){
-			for(int i=0; i<ibuff.size(); i++) buff[i] = ibuff[i];
+			for (i = 0; i < ibuff.size(); i++) buff[i] = ibuff[i];
 
 			//画像バッファを送信する
 			sendto(sock_of_con, buff, sendSize, 0, (struct sockaddr *)&addr_of_con, sizeof(addr_of_con));
