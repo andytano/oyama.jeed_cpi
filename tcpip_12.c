@@ -1,6 +1,6 @@
 /*** tcpip_12.c ***/
 
-#include "./myTCPSv.h"
+#include "./myTCP.h"
 
 /*** REVEIVE ONE LINE ***/
 int recvOneLine(int clSock, char *buf)

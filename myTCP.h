@@ -16,7 +16,7 @@
 
 #include <pthread.h>
 
-#define DEBUG_K12 0
+#define DEBUG 0
 #define BUF_LEN 1024	// RECEIVE BUFFER SIZE
 #define QUEUE_MAX 5
 #define HEADERS_MAX 20	// HTTP HEADERS

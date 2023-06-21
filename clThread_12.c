@@ -1,6 +1,6 @@
 /*** clThread_12.c ***/
 
-#include "./myTCPSv.h"
+#include "./myTCP.h"
 
 /*** MAIN THREAD ***/
 void *threadMain(void *thrArgs)
