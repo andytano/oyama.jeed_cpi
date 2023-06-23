@@ -23,13 +23,13 @@ void *threadMain(void *thrArgs)
 void clHandler(int clSock)
 	// int clSock: SOCKET DESCRIPTOR for CLIENT
 {
-	char buf[BUF_LEN];
-	int bytesRcvd;
-	char replyBuf[R_BUF_LEN];
-	char *bufPtr;
-	char *nextPtr;
-	int i;
-	char str[6];
+	//char buf[BUF_LEN];
+	//int bytesRcvd;
+	//char replyBuf[R_BUF_LEN];
+	//char *bufPtr;
+	//char *nextPtr;
+	//int i;
+	//char str[6];
 
 	/* CLOSE SOCKET */
 	if (shutdown(clSock, 2) == -1) {
