@@ -1,13 +1,17 @@
 # TARGET NAME
 TARGET := k12s
+
 # DIRECTORIES
 EXE_DIR := ../exe/
 OBJ_DIR := ../obj/
 SRC_DIR := ./
+
 # SOURCE FILES
 SRCS := $(wildcard *.c)
+
 # OBJECT FILES
 OBJS := $(SRCS:%.c=$(OBJ_DIR)%.o)
+
 # HEADER FILES
 HEADERS := myTCP.h
 
@@ -20,25 +24,21 @@ LFLAGS := -lpthread
 
 # MAKE ALL (PHONY TARGET)
 .PHONY: all
-all: $(TARGET)
+all: $(EXE_DIR)$(TARGET)
 
 # LINK OBJECTS
-$(TARGET): $(SRCS:%.c=%.o)
+$(EXE_DIR)$(TARGET): $(OBJS)
 	mkdir -p $(EXE_DIR)
 	$(CC) $(CFLAGS) -o $(EXE_DIR)$@ $(OBJS) $(LFLAGS)
 
 # COMPILE SOURCES
-#.c.o: %.c
-.c.o: $(SRCS)
+$(OBJ_DIR)%.o: %.c $(HEADERS)
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $(<:%.c=$(OBJ_DIR)%.o) -c $<
-
-# UPDATE HEADER FILES
-#$(OBJ): $(SRC) $(HEADER)
-#$(OBJS): $(HEADERS)
 
 # CLEAN FILES (PHONY TARGET)
 .PHONY: clean
 clean:
-	rm -f $(EXE_DIR)$(TARGET) $(OBJS)
 	rm -f ./*~
+	rm -f $(OBJS)
+#	rm -f $(EXE_DIR)$(TARGET)

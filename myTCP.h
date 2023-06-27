@@ -54,4 +54,3 @@ struct httpReqHeader {
 	char *name;
 	char *val;
 };
-
